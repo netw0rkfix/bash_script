@@ -1,6 +1,6 @@
 #!/bin/bash
-### This script need to be run as root and in the root folder
 
+### This script need to be run as root and in the root folder
 ### Remove any old docker stuff
 apt-get remove docker docker-engine docker.io containerd runc
 
@@ -14,8 +14,6 @@ apt-get install docker-ce docker-ce-cli containerd.io
 docker --version
 sleep 3
 
-
-
 ### Install docker-compose
 curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
@@ -23,6 +21,8 @@ ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 sleep 3
 mkdir  /usr/local/custom/docker
 cd /usr/local/custom/docker
+
+### Install ansd run docker security benchmark
 git clone https://github.com/docker/docker-bench-security.git
 cd docker-bench-security
 sh docker-bench-security.sh
@@ -31,28 +31,28 @@ sh docker-bench-security.sh
 
 
 ## First rule - delete all
--D
+#-D
 
 ## Increase the buffers to survive stress events.
 ## Make this bigger for busy systems
--b 8192
+#-b 8192
 
 ## This determine how long to wait in burst of events
---backlog_wait_time 0
+#--backlog_wait_time 0
 
 ## Set failure mode to syslog
--f 1
--w /usr/bin/dockerd -p rwxa -k docker
--w /run/containerd -p rwxa -k docker
--w /var/lib/docker -p rwxa -k docker
--w /etc/docker -p rwxa -k docker
--w /docker.service -p rwxa -k docker
--w /etc/default/docker -p rwxa -k docker
--w /etc/containerd/config.toml -p rwxa -k docker
--w /usr/bin/containerd -p rwxa -k docker
--w /usr/bin/containerd-shim -p rwxa -k docker
--w /usr/bin/containerd-shim-runc-v1 -p rwxa -k docker
--w /usr/bin/containerd-shim-runc-v2 -p rwxa -k docker
--w /usr/bin/runc -p rwxa -k docker
--w /lib/systemd/system/docker.service -p rwxa -k docker
--w /lib/systemd/system/docker.socket -p rwxa -k docker
+#-f 1
+#-w /usr/bin/dockerd -p rwxa -k docker
+#-w /run/containerd -p rwxa -k docker
+#-w /var/lib/docker -p rwxa -k docker
+#-w /etc/docker -p rwxa -k docker
+#-w /docker.service -p rwxa -k docker
+#-w /etc/default/docker -p rwxa -k docker
+#-w /etc/containerd/config.toml -p rwxa -k docker
+#-w /usr/bin/containerd -p rwxa -k docker
+#-w /usr/bin/containerd-shim -p rwxa -k docker
+#-w /usr/bin/containerd-shim-runc-v1 -p rwxa -k docker
+#-w /usr/bin/containerd-shim-runc-v2 -p rwxa -k docker
+#-w /usr/bin/runc -p rwxa -k docker
+#-w /lib/systemd/system/docker.service -p rwxa -k docker
+#-w /lib/systemd/system/docker.socket -p rwxa -k docker
