@@ -1,7 +1,6 @@
 #!/bin/bash
 
 ### Install ocalmfuse tool to mount google drive to host
-### Run as root
 
 apt update 
 apt install opam -y
