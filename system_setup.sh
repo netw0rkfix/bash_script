@@ -17,6 +17,7 @@ systemctl restart netdata
 
 ### System utilities
 apt install tree ranger neofetch git curl tmux sysstat iotop zip unzip p7zip vim htop rsync -y
+apt install apt-listbugs libpam-tmpdir needrestart debsecan fail2ban debsums -y
 
 
 ### Network utilities
