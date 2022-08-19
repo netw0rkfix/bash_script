@@ -37,15 +37,15 @@ apt install apt-transport-https
 echo 'Acquire::Languages "none";' | tee /etc/apt/apt.conf.d/99disable-translations
 echo "deb https://packages.cisofy.com/community/lynis/deb/ stable main" | tee /etc/apt/sources.list.d/cisofy-lynis.list
 apt install chkrootkit rkhunter auditd lynis -y
-curl https://omnitruck.chef.io/install.sh |  bash -s -- -P inspec
+#curl https://omnitruck.chef.io/install.sh |  bash -s -- -P inspec
 lynis audit system >> /root/lynis_system_audit.txt
 chkrootkit >> /root/hkrootkit_scan.txt
-qrkhunter -c >> /root/rkhunter_scan.txt
+rkhunter -c >> /root/rkhunter_scan.txt
 
 ### SSH
 mkdir ~/.ssh
 cd ~/.ssh
-ssh-keygen -t 
+ssh-keygen
 touch ~/.ssh/authorized_keys
 echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDLsKEiOxMpZveqTWZPRmXfS9lUo7XiTl1o1yuCn9Gz47+6UA1L0ZBnnSdKmbVXN1ewM5Et5qhfzCNlNtOCHDS7s5D59XCXMHLYOVdDvrMBpw6/n9/uDirgsUkO2m2X/HfGnNwb5vpivCYCCxlIB9SoHTj3Y8NcBP6c4/k8b4sazbZ6oeQ85CR2KpRotIW+Oq0tnMxWxtrTH2SLBt+WDwMSqT8rF0BdPU+jPTcmuYTIRPWhMSKppZr7GGCd3+C9UHuwp6H+zrKl6YWxX6pNzGvAsRebg2ADp6AcDLBf39KiFHYAr2gvcZnvWD3gYanlrOQfoseFzUYi5kQAqOJgDYIY0CgQxA2p7IakbU3OBkIY2cwsXUji/THilbUhIcj+s1w0uDK5hJtsuBxdBueIgDt5WM1leQ8P3BFhvAj+1TTGzNJucUmrmjB4KM2ofDnjMu3aNbxy2D30K/dW/K0Gt1AKd9ENW8TJO6Oz7rEhZbOXFUNJ4IW1kvRteXAmzIDAJyE= maxime@pop-os' >> authorized_keys
 
