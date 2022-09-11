@@ -1,0 +1,9 @@
+mkdir -p newpack oldpack/DEBIAN
+dpkg-deb -x rustdesk-1.1.9.deb oldpack
+dpkg-deb -e rustdesk-1.1.9.deb oldpack/DEBIAN/
+
+# modify control
+sed -i "s/pulseaudio/pulseaudio | pipewire-pulse/g" oldpack/DEBIAN/control
+
+dpkg-deb -Z xz -b oldpack newpack
+sudo dpkg -i newpack/rustdesk_1.1.9_amd64.deb
