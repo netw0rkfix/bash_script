@@ -7,3 +7,4 @@ sed -i "s/pulseaudio/pulseaudio | pipewire-pulse/g" oldpack/DEBIAN/control
 
 dpkg-deb -Z xz -b oldpack newpack
 sudo dpkg -i newpack/rustdesk_1.1.9_amd64.deb
+test
